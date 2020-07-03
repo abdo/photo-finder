@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useEffect } from 'react';
-import styles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import * as mainActions from '../../store/main/actions';
+import React, { useEffect } from 'react';
 
-const UserPreviewScreen = ({ route }) => {
+import { colors } from '../../style/base';
+import * as mainActions from '../../store/main/actions';
+import styles from './styles';
+
+const UserPreviewScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const user = route.params.user;
@@ -25,19 +27,30 @@ const UserPreviewScreen = ({ route }) => {
     (state) => state.request.calls.getUserPhotos?.loading,
   );
 
+  const onPressPhoto = ({ photo }) => {
+    navigation.navigate('PhotoPreview', { photo });
+  };
+
   return (
     <ScrollView>
       <View style={styles.userInfoContainer}>
-        <Text style={styles.username}>{user.username}</Text>
-        <Image style={styles.userImage} source={{ uri: user.userImage }} />
+        <Text style={styles.username}>{user?.username}</Text>
+        <Image style={styles.userImage} source={{ uri: user?.userImage }} />
 
         {isGettingPhotoList ? (
-          <ActivityIndicator size='large' style={styles.loadingIndicator} />
-        ) : PhotoList.length === '0' ? (
-          <Text style={styles.noPhotosText}>No users found</Text>
+          <ActivityIndicator
+            size='large'
+            style={styles.loadingIndicator}
+            color={colors.primary}
+          />
+        ) : PhotoList.length === 0 ? (
+          <Text style={styles.noPhotosText}>No photos found</Text>
         ) : (
           PhotoList.map((photo) => (
-            <TouchableOpacity key={photo.url}>
+            <TouchableOpacity
+              key={photo.url}
+              onPress={() => onPressPhoto({ photo })}
+            >
               <Image style={styles.photo} source={{ uri: photo.url }} />
             </TouchableOpacity>
           ))

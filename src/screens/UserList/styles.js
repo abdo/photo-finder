@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 40,
   },
+  searchInput: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
   searchButton: {
     width: '80%',
     marginTop: 40,

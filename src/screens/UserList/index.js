@@ -39,6 +39,7 @@ const UserListScreen = ({ navigation }) => {
         <TextInput
           placeholder='Type here...'
           onChangeText={(query) => setSearchQuery(query.trim())}
+          style={styles.searchInput}
         />
         <View style={styles.searchButton}>
           <Button
@@ -50,23 +51,27 @@ const UserListScreen = ({ navigation }) => {
         </View>
       </View>
       {isGettingUserList ? (
-        <ActivityIndicator size='large' style={styles.loadingIndicator} />
-      ) : UserList.length === '0' ? (
+        <ActivityIndicator
+          size='large'
+          style={styles.loadingIndicator}
+          color={colors.primary}
+        />
+      ) : UserList.length === 0 ? (
         <Text style={styles.noUsersText}>No users found</Text>
       ) : (
         UserList.map((user) => (
           <TouchableOpacity
-            key={user.username}
+            key={user?.username}
             onPress={() => onPressUser({ user })}
           >
             <View style={styles.userContainer}>
               <View>
-                <Text>{user.name}</Text>
-                <Text>Username: {user.username}</Text>
+                <Text>{user?.name}</Text>
+                <Text>Username: {user?.username}</Text>
               </View>
               <Image
                 style={styles.userImage}
-                source={{ uri: user.userImage }}
+                source={{ uri: user?.userImage }}
               />
             </View>
           </TouchableOpacity>

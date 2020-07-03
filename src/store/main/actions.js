@@ -35,7 +35,7 @@ export const getUserPhotos = ({ username }) => (dispatch) => {
     )
     .then((result) => {
       const photos = result?.map((photo) => ({
-        url: photo?.urls?.thumb,
+        url: photo?.urls?.small,
       }));
 
       dispatch({
