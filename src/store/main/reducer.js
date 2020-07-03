@@ -7,9 +7,10 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case actionTypes.TEST:
+    case actionTypes.GET_USERS:
       return {
         ...state,
+        UserList: action.payload,
       };
 
     default:

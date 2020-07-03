@@ -16,8 +16,6 @@ export const getUsers = ({ searchQuery }) => (dispatch) => {
         userImage: user?.profile_image?.medium,
       }));
 
-      console.log(users);
-
       dispatch({
         type: actionTypes.GET_USERS,
         payload: users,
