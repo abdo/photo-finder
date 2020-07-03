@@ -10,6 +10,13 @@
 * Make sure you have *expo* and *expo-cli* installed, and an emulator set up
 * expo start -a (to run an an android device / emulator)
 
+### Main used packages:
+
+* Redux
+* redux-thunk
+* react-navigation
+* axios
+
 <br/>
 <br/>
 <br/>

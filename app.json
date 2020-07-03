@@ -16,6 +16,10 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.app.photofinder",
+      "versionCode": 1
+    },
     "ios": {
       "supportsTablet": true
     },
