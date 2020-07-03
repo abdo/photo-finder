@@ -1,11 +1,12 @@
 import {
+  ActivityIndicator,
   Button,
   Image,
   ScrollView,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
-  ActivityIndicator,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState } from 'react';
@@ -28,6 +29,10 @@ const UserListScreen = ({ navigation }) => {
     dispatch(mainActions.getUsers({ searchQuery }));
   };
 
+  const onPressUser = ({ user }) => {
+    navigation.navigate('UserPreview', { user });
+  };
+
   return (
     <ScrollView>
       <View style={styles.searchContainer}>
@@ -46,18 +51,25 @@ const UserListScreen = ({ navigation }) => {
       </View>
       {isGettingUserList ? (
         <ActivityIndicator size='large' style={styles.loadingIndicator} />
+      ) : UserList.length === '0' ? (
+        <Text style={styles.noUsersText}>No users found</Text>
       ) : (
         UserList.map((user) => (
-          <View style={styles.userContainer} key={user.username}>
-            <View>
-              <Text>{user.name}</Text>
-              <Text>Username: {user.username}</Text>
+          <TouchableOpacity
+            key={user.username}
+            onPress={() => onPressUser({ user })}
+          >
+            <View style={styles.userContainer}>
+              <View>
+                <Text>{user.name}</Text>
+                <Text>Username: {user.username}</Text>
+              </View>
+              <Image
+                style={styles.userImage}
+                source={{ uri: user.userImage }}
+              />
             </View>
-            <Image
-              style={{ width: 80, height: 80 }}
-              source={{ uri: user.userImage }}
-            />
-          </View>
+          </TouchableOpacity>
         ))
       )}
     </ScrollView>

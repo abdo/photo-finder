@@ -33,6 +33,17 @@ const styles = StyleSheet.create({
 
     elevation: 12,
   },
+  userImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 100,
+  },
+  noUsersText: {
+    marginTop: 40,
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;

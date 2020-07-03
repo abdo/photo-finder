@@ -13,6 +13,12 @@ export default (state = INITIAL_STATE, action) => {
         UserList: action.payload,
       };
 
+    case actionTypes.GET_USER_PHOTOS:
+      return {
+        ...state,
+        PhotoList: action.payload,
+      };
+
     default:
       return state;
   }
